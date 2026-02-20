@@ -1,7 +1,6 @@
 osszeg :: Num a => a -> a -> a
 osszeg a b = a + b
 
-osszeg2 :: Int -> Int -> Int
 osszeg2 a b = (+) a b
 
 kulombseg a b = a - b

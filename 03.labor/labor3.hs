@@ -1,5 +1,6 @@
 import Data.ByteString (foldl', foldr')
 import Distribution.Simple.Setup (falseArg)
+import Graphics.Win32 (POINT)
 -- # 3. labor
 
 -- I. Mit csinálnak az alábbi függvényhívások, ahol az atlag a számok átlagát meghatározó függvény?

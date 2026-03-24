@@ -99,10 +99,52 @@ fiboAB a b = dropWhile(< a) $ takeWhile(< b) fibo2
 -- III. Könyvtárfüggvények használata nélkül írjuk meg azt a Haskell függvényt, amely
 
 -- - meghatározza egy lista pozitív elemeinek átlagát,
+atlag ls = (sum ls) / fromIntegral(length ls)
+
+atlagPozitiv ls = atlag [x | x <- ls, x > 0]
+
+atlagPozitiv2 ls = atlag . filter (>0) $ ls
 -- - meghatározzuk azt a listát, amely tartalmazza az eredeti lista minden n-ik elemét,
+listaN ls n = [i | (idx, i) <- zip[1 ..] ls, mod i n == 0]
+
+listaN2 ls n i 
+    | i - 1 >= length ls = []
+    | mod i n == 0 = ls !! (i - 1) : listaN2 ls n (i+1)
+    | otherwise = listaN2 ls n (i+1)
+
+listaN3 ls n = map snd $ filter(\x -> mod (fst x) n == 0)(zip[1 ..] ls)
+
 -- - tükrözi egy lista elemeit,
+tukroz ls = reverse ls
+
+-- - tükrözi egy lista elemeit, egyesével
+tukrozEgyesevel ls = map (reverse . show) ls
+
+-- - tükrözi egy lista elemeit, egyesével és legyen int a végén1
+tukrozEgyesevel2 ls = map (\x -> read x :: Int) $ map (reverse . show) ls
+
 -- - két módszerrel is meghatározza egy lista legnagyobb elemeinek pozícióit: a lista elemeit kétszer járja be, illetve úgy hogy a lista elemeit csak egyszer járja be,
+maxElemPoz ls = [idx | (idx,i) <- zip [0..] ls, i == myMax]
+    where
+        myMax = maximum ls
+
+maxElemPoz2 (x :ls) = foldl aux (x, [0]) (zip ls [1..])
+    where
+        aux (currentMax, positions) (elem, i)
+            | elem > currentMax = (elem, [i])
+            | elem == currentMax = (elem, i:positions)
+            | otherwise = (currentMax, positions)
+
 -- - meghatározza egy lista leggyakrabban előforduló elemét.
+--elof ls = maxElofElem
+    --where
+       -- maxElofSzam = maximum $ map length $ (group . sort) ls
+       -- ls2 = map (\x -> (head x, lenght x)) $ (group . sort) ls
+       -- maxElofElem = filter (\x -> snd x == maxElofSzam) ls2
+
+
+leggyakoribb2[] = error "ures lista"
+leggyakoribb2 ls = head $ maximumBy (comparing length) group $ sort ls
 
 main = do
     negyzet3 4

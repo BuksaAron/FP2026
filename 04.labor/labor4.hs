@@ -104,7 +104,6 @@ fiboAB a b = dropWhile(< a) $ takeWhile(< b) fibo2
 -- - két módszerrel is meghatározza egy lista legnagyobb elemeinek pozícióit: a lista elemeit kétszer járja be, illetve úgy hogy a lista elemeit csak egyszer járja be,
 -- - meghatározza egy lista leggyakrabban előforduló elemét.
 
-
 main = do
     negyzet3 4
     print (negyzet2 4) 

@@ -143,8 +143,8 @@ maxElemPoz2 (x :ls) = foldl aux (x, [0]) (zip ls [1..])
        -- maxElofElem = filter (\x -> snd x == maxElofSzam) ls2
 
 
-leggyakoribb2[] = error "ures lista"
-leggyakoribb2 ls = head $ maximumBy (comparing length) group $ sort ls
+-- leggyakoribb2[] = error "ures lista"
+-- leggyakoribb2 ls = head $ maximumBy (comparing length) group $ sort ls
 
 main = do
     negyzet3 4
